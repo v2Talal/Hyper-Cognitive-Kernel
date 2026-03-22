@@ -173,8 +173,8 @@ Total Rust Files: 47
 │  ├── Predictive Coding Network                              │
 │  ├── World Model                                            │
 │  ├── Triple-Layer Memory                                    │
-│  ├── Meta-Learning                                         │
-│  └── Homeostatic Drives                                    │
+│  ├── Meta-Learning                                          │
+│  └── Homeostatic Drives                                     │
 └─────────────────────────────────────────────────────────────┘
 ```
 
