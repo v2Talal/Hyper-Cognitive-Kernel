@@ -65,15 +65,15 @@ The `cognitive_cycle()` processes data through this pipeline:
 
 ```
 ┌────────────────────────────────────────────────────────────────────┐
-│                         Hyper-Cognitive-Kernel                     │
+│                         HYPER-COGNITIVE KERNEL                     │
 ├────────────────────────────────────────────────────────────────────┤
 │                                                                    │
 │   ┌─────────────────────────────────────────────────────────────┐  │
 │   │                     PLUGINS (Hot-swappable)                 │  │
 │   ├─────────────────────────────────────────────────────────────┤  │
-│   │  [Neural]         [Vision]        [NLP]          [RL]       │  │
-│   │  LSTM/Attn       CNN/Edge        Tokenize       DQN/DDQN    │  │
-│   │  Reservoir         Flow          Sentiment        SAC       │  │
+│   │  [Neural]     [Vision]    [NLP]     [RL]                    │  │
+│   │  LSTM/Attn   CNN/Edge    Tokenize  DQN/DDQN                 │  │
+│   │  Reservoir   Flow        Sentiment SAC                      │  │
 │   └─────────────────────────────────────────────────────────────┘  │
 │                                                                    │
 │   ┌─────────────────────────────────────────────────────────────┐  │
@@ -108,7 +108,7 @@ The `cognitive_cycle()` processes data through this pipeline:
 ## Project Structure
 
 ```
-Hyper-Cognitive-Kernel/
+hyper_cognitive_kernel/
 │
 ├── Cargo.toml              # Project configuration & dependencies
 ├── Cargo.lock              # Locked dependency versions
@@ -209,26 +209,54 @@ Hyper-Cognitive-Kernel/
 
 ### Core Modules (Always Active)
 
-| Module | Files | Description |
-|--------|-------|-------------|
-| **core** | agent.rs, config.rs | Main agent orchestrator and configuration |
-| **cognition** | predictive_coding.rs, world_model.rs, attention.rs | Predictive coding, world simulation, attention |
-| **memory** | episodic.rs, semantic.rs, procedural.rs | Triple-layer memory system |
-| **meta** | learning_controller.rs, self_reflection.rs | Self-modifying learning, introspection |
-| **homeostasis** | drives.rs, allostasis.rs | Motivation and drive regulation |
+┌─────────────────┬──────────────────────────────────────────────────┐
+│     Module      │                Description                       │
+├─────────────────┼──────────────────────────────────────────────────┤
+│ **core**        │ Main agent orchestrator and configuration        │
+│ **cognition**   │ Predictive coding, world simulation, attention   │
+│ **memory**      │ Triple-layer memory system                       │
+│ **meta**        │ Self-modifying learning, introspection           │
+│ **homeostasis** │ Motivation and drive regulation                  │
+└─────────────────┴──────────────────────────────────────────────────┘
 
 ### Plugins (Hot-swappable)
+┌──────────────────────┬─────────────────────────────────────────────────────┐
+|        Plugin        |                     Description                     |
+├──────────────────────┼─────────────────────────────────────────────────────┤
+| **neural**           | Deep neural networks (LSTM, Attention, Reservoir)   |
+| **continual**        | Catastrophic forgetting prevention                  |
+| **real_time**        | Single-sample learning, adaptive rates              |
+| **distributed**      | Multi-agent federated learning                      |
+| **vision**           | Image feature extraction                            |
+| **nlp**              | Tokenization, embeddings, sentiment                 |
+| **rl_integration**   | Deep RL with Active Inference                       |
+| **environment**      | External system integration (MQTT, WebSocket, HTTP) |
+└──────────────────────┴─────────────────────────────────────────────────────┘
 
-| Plugin | Files | Description |
-|--------|-------|-------------|
-| **neural** | layers.rs, activations.rs, optimizer.rs | Deep neural networks (LSTM, Attention, Reservoir) |
-| **continual** | ewc.rs, memory_replay.rs, progressive.rs, packnet.rs, synaptic.rs | Catastrophic forgetting prevention |
-| **real_time** | adaptive_lr.rs, online_trainer.rs | Single-sample learning, adaptive rates |
-| **distributed** | learner.rs, pubsub.rs, gossip.rs | Multi-agent federated learning |
-| **vision** | mod.rs | Image feature extraction |
-| **nlp** | mod.rs | Tokenization, embeddings, sentiment |
-| **rl_integration** | mod.rs | Deep RL with Active Inference |
-| **environment** | mqtt_client.rs, websocket_client.rs, http_api.rs, message_bus.rs | External system integration |
+---
+
+## File Structure by Module
+
+### Core
+```
+core/      → agent.rs, config.rs
+cognition/ → predictive_coding.rs, world_model.rs, attention.rs
+memory/    → episodic.rs, semantic.rs, procedural.rs
+meta/      → learning_controller.rs, self_reflection.rs
+homeostasis/ → drives.rs, allostasis.rs
+```
+
+### Plugins
+```
+neural/      → layers.rs, activations.rs, optimizer.rs
+continual/   → ewc.rs, memory_replay.rs, progressive.rs, packnet.rs, synaptic.rs
+real_time/   → adaptive_lr.rs, online_trainer.rs
+distributed/ → learner.rs, pubsub.rs, gossip.rs
+vision/      → mod.rs
+nlp/         → mod.rs
+rl_integration/ → mod.rs
+environment/ → mqtt_client.rs, websocket_client.rs, http_api.rs, message_bus.rs
+```
 
 ---
 
@@ -297,15 +325,24 @@ let action = agent.cognitive_cycle(&combined_input, reward);
 
 ## Performance Benchmarks
 
-| Metric | Value | Conditions |
-|--------|-------|------------|
-| **Inference Latency** | < 1ms | Single forward pass, 8 inputs |
-| **Learning Latency** | < 2ms | Single sample update |
-| **Memory per Agent** | ~50MB | Full cognitive system loaded |
-| **Throughput** | 10,000 samples/sec | Continuous streaming |
-| **Cold Start** | < 100ms | Agent initialization |
+Measured on your machine using `cargo run --example benchmark`:
 
-Tested on: AMD Ryzen 7 5800X, 32GB RAM
+┌───────────────────────────────────────────────────────────────────┐
+|        Operation         |    Latency    |        Throughput      |
+├──────────────────────────┼───────────────┼────────────────────────┤
+| **Agent Creation**       | 0.149 ms      | 6.7 agents/ms          |
+| **Cognitive Cycle**      | 0.094 ms      | 10,694 cycles/sec      |
+| **Neural Inference**     | 0.076 ms      | 13,226 inferences/sec  |
+| **Online Learning**      | 0.016 ms      | 62,229 updates/sec     |
+| **Continual Learning**   | 0.0003 ms     | 3,531,697 samples/sec  |
+| **Memory Encoding**      | 0.086 ms      | 11,568 memories/sec    |
+| **Sustained Throughput** |     ---       | **11,892 samples/sec** |
+└───────────────────────────────────────────────────────────────────┘
+
+Run benchmarks yourself:
+```bash
+cargo run --example benchmark
+```
 
 ---
 
