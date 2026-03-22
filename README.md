@@ -209,6 +209,7 @@ hyper_cognitive_kernel/
 
 ### Core Modules (Always Active)
 
+```
 ┌─────────────────┬──────────────────────────────────────────────────┐
 │     Module      │                Description                       │
 ├─────────────────┼──────────────────────────────────────────────────┤
@@ -218,8 +219,11 @@ hyper_cognitive_kernel/
 │ **meta**        │ Self-modifying learning, introspection           │
 │ **homeostasis** │ Motivation and drive regulation                  │
 └─────────────────┴──────────────────────────────────────────────────┘
+```
 
 ### Plugins (Hot-swappable)
+
+```
 ┌──────────────────────┬─────────────────────────────────────────────────────┐
 |        Plugin        |                     Description                     |
 ├──────────────────────┼─────────────────────────────────────────────────────┤
@@ -232,6 +236,7 @@ hyper_cognitive_kernel/
 | **rl_integration**   | Deep RL with Active Inference                       |
 | **environment**      | External system integration (MQTT, WebSocket, HTTP) |
 └──────────────────────┴─────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -327,6 +332,7 @@ let action = agent.cognitive_cycle(&combined_input, reward);
 
 Measured on your machine using `cargo run --example benchmark`:
 
+```
 ┌───────────────────────────────────────────────────────────────────┐
 |        Operation         |    Latency    |        Throughput      |
 ├──────────────────────────┼───────────────┼────────────────────────┤
@@ -338,6 +344,7 @@ Measured on your machine using `cargo run --example benchmark`:
 | **Memory Encoding**      | 0.086 ms      | 11,568 memories/sec    |
 | **Sustained Throughput** |     ---       | **11,892 samples/sec** |
 └───────────────────────────────────────────────────────────────────┘
+```
 
 Run benchmarks yourself:
 ```bash
