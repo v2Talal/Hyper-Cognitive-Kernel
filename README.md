@@ -2,40 +2,197 @@
 
 A production-ready cognitive agent framework in Rust implementing real-time online learning with Active Inference, Predictive Coding, and Deep Neural Networks.
 
-## Overview
+## Description
 
-Hyper-Cognitive Kernel is designed for autonomous agents that learn continuously from streaming data without batch processing. It combines cognitive science principles with modern machine learning to create adaptive, self-improving agents.
+Real-time cognitive agent framework: instant learning from single samples, no batch processing, adaptive learning rates, catastrophic forgetting prevention, and multi-agent distributed learning.
 
-## Core Features
+---
 
-### Real-time Online Learning
-- **Instant Learning**: Process single samples immediately
-- **No Batching**: Zero latency between observation and learning
-- **Adaptive Rates**: Automatic per-layer learning rate adjustment
-- **Continuous Improvement**: Models evolve with every interaction
+## Project Structure
 
-### Cognitive Architecture
-| Component | Description |
-|-----------|-------------|
-| **Predictive Coding** | Hierarchical predictions with error-driven updates |
-| **World Model** | Internal environment simulation |
-| **Triple Memory** | Episodic, semantic, and procedural memory systems |
-| **Meta-Learning** | Self-modifying hyperparameters |
-| **Homeostatic Drives** | Survival, curiosity, and efficiency motivation |
+```
+hyper_cognitive_kernel/
+│
+├── Cargo.toml              # Project configuration & dependencies
+├── Cargo.lock              # Locked dependency versions
+├── LICENSE                # MIT License
+├── README.md              # This file
+├── .gitignore             # Git ignore rules
+│
+└── src/                   # Source code (47 Rust files)
+    │
+    ├── lib.rs             # Library entry point - exports all modules
+    ├── main.rs            # Demo program - showcases all features
+    │
+    ├── ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │                     CORE MODULES
+    │         (Essential cognitive agent components)
+    │
+    ├── core/
+    │   ├── mod.rs         # Core module exports
+    │   ├── agent.rs       # CognitiveAgent - main agent orchestrator
+    │   └── config.rs      # AgentConfig - configuration parameters
+    │
+    ├── cognition/
+    │   ├── mod.rs         # Cognition module exports
+    │   ├── predictive_coding.rs  # Hierarchical prediction with error signals
+    │   ├── world_model.rs        # Internal environment simulation
+    │   └── attention.rs          # Selective attention mechanism
+    │
+    ├── memory/
+    │   ├── mod.rs         # Memory system exports
+    │   ├── episodic.rs     # Episode storage (experiences)
+    │   ├── semantic.rs     # General knowledge patterns
+    │   └── procedural.rs   # Skills and action policies
+    │
+    ├── meta/
+    │   ├── mod.rs         # Meta-learning exports
+    │   ├── learning_controller.rs  # Adaptive learning rate controller
+    │   └── self_reflection.rs     # Self-analysis and reporting
+    │
+    └── homeostasis/
+        ├── mod.rs         # Drive system exports
+        ├── drives.rs       # Survival, curiosity, efficiency drives
+        └── allostasis.rs  # Allostatic load management
+    │
+    ├── ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │                 ADVANCED MODULES
+    │         (Deep learning & specialized capabilities)
+    │
+    ├── neural/
+    │   ├── mod.rs         # Neural network exports
+    │   ├── layers.rs      # Dense, LSTM, Attention, Reservoir layers
+    │   ├── activations.rs # ReLU, Sigmoid, Tanh, Softmax, ELU
+    │   └── optimizer.rs   # SGD, Adam, RMSprop optimizers
+    │
+    ├── continual/
+    │   ├── mod.rs         # Continual learning exports
+    │   ├── ewc.rs         # Elastic Weight Consolidation
+    │   ├── memory_replay.rs  # Experience replay buffer
+    │   ├── progressive.rs   # Progressive Neural Networks
+    │   ├── packnet.rs       # Pack & Prune strategy
+    │   └── synaptic.rs      # Synaptic Intelligence
+    │
+    ├── real_time/
+    │   ├── mod.rs         # Real-time learning exports
+    │   ├── adaptive_lr.rs   # Per-layer adaptive learning rate
+    │   └── online_trainer.rs  # Single-sample training
+    │
+    ├── distributed/
+    │   ├── mod.rs         # Distributed learning exports
+    │   ├── learner.rs     # Federated learning coordinator
+    │   ├── pubsub.rs      # Publish/Subscribe messaging
+    │   └── gossip.rs      # Gossip protocol for peer sync
+    │
+    ├── vision/
+    │   └── mod.rs         # Image processing & CNN features
+    │
+    ├── nlp/
+    │   └── mod.rs         # Tokenizer, Embedding, Sentiment analysis
+    │
+    ├── rl_integration/
+    │   └── mod.rs         # DQN, DDQN, SAC + Active Inference
+    │
+    ├── environment/
+    │   ├── mod.rs         # Environment interface exports
+    │   ├── mqtt_client.rs    # MQTT protocol client
+    │   ├── websocket_client.rs  # WebSocket client
+    │   ├── http_api.rs       # REST API client
+    │   └── message_bus.rs    # Inter-agent messaging
+    │
+    └── utils/
+        ├── mod.rs         # Utilities exports
+        ├── math.rs        # Math helpers (sigmoid, softmax, etc)
+        └── logger.rs      # Logging functionality
+```
+
+---
+
+## Module Descriptions
+
+### Core Modules
+
+| Module | Files | Description |
+|--------|-------|-------------|
+| **core** | agent.rs, config.rs | Main agent orchestrator and configuration |
+| **cognition** | predictive_coding.rs, world_model.rs, attention.rs | Predictive coding, world simulation, attention |
+| **memory** | episodic.rs, semantic.rs, procedural.rs | Triple-layer memory system |
+| **meta** | learning_controller.rs, self_reflection.rs | Self-modifying learning, introspection |
+| **homeostasis** | drives.rs, allostasis.rs | Motivation and drive regulation |
 
 ### Advanced Modules
 
-| Module | Capabilities |
-|--------|-------------|
-| **Neural Networks** | Dense, LSTM, Attention, Reservoir layers |
-| **Continual Learning** | EWC, Memory Replay, Progressive Networks, PackNet |
-| **Distributed Learning** | Federated learning, Gossip protocols, Pub/Sub |
-| **Vision** | CNN features, edge detection, spatial analysis |
-| **NLP** | Tokenization, embeddings, sentiment analysis |
-| **RL Integration** | DQN, DDQN, SAC with Active Inference |
-| **Environment** | MQTT, WebSocket, HTTP API clients |
+| Module | Files | Description |
+|--------|-------|-------------|
+| **neural** | layers.rs, activations.rs, optimizer.rs | Deep neural networks (LSTM, Attention, Reservoir) |
+| **continual** | ewc.rs, memory_replay.rs, progressive.rs, packnet.rs, synaptic.rs | Catastrophic forgetting prevention |
+| **real_time** | adaptive_lr.rs, online_trainer.rs | Single-sample learning, adaptive rates |
+| **distributed** | learner.rs, pubsub.rs, gossip.rs | Multi-agent federated learning |
+| **vision** | mod.rs | Image feature extraction |
+| **nlp** | mod.rs | Tokenization, embeddings, sentiment |
+| **rl_integration** | mod.rs | Deep RL with Active Inference |
+| **environment** | mqtt_client.rs, websocket_client.rs, http_api.rs, message_bus.rs | External system integration |
+| **utils** | math.rs, logger.rs | Helper functions |
 
-## Quick Start
+---
+
+## File Count
+
+```
+Total Rust Files: 47
+├── Core Modules: 13 files
+├── Advanced Modules: 22 files
+├── Utilities: 4 files
+├── Entry Points: 2 files (lib.rs, main.rs)
+└── Tests: Integrated in modules
+```
+
+---
+
+## Architecture Overview
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    HYPER-COGNITIVE KERNEL                   │
+├─────────────────────────────────────────────────────────────┤
+│  ADVANCED MODULES                                           │
+│  ├── Neural Networks (LSTM, Attention, Reservoir)           │
+│  ├── Continual Learning (EWC, Memory Replay, PackNet)       │
+│  ├── Distributed Learning (Federated, Gossip)               │
+│  ├── Vision Processing (CNN, Optical Flow)                  │
+│  ├── NLP (Embeddings, Sentiment, Intent)                    │
+│  ├── RL + Active Inference                                  │
+│  └── Environment Interface (MQTT, WebSocket, API)           │
+├─────────────────────────────────────────────────────────────┤
+│  REAL-TIME LEARNING ENGINE                                  │
+│  ├── Online Gradient Descent                                │
+│  ├── Adaptive Learning Rate                                 │
+│  └── Elastic Weight Consolidation                           │
+├─────────────────────────────────────────────────────────────┤
+│  CORE COGNITIVE SYSTEMS                                     │
+│  ├── Predictive Coding Network                              │
+│  ├── World Model                                            │
+│  ├── Triple-Layer Memory                                    │
+│  ├── Meta-Learning                                         │
+│  └── Homeostatic Drives                                    │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Installation
+
+```bash
+git clone https://github.com/v2Talal/Hyper-Cognitive-Kernel.git
+cd hyper-cognitive-kernel
+cargo build --release
+cargo run --release
+cargo test --lib
+```
+
+---
+
+## Usage Example
 
 ```rust
 use hyper_cognitive_kernel::{CognitiveAgent, AgentConfig};
@@ -52,134 +209,18 @@ let reward = 1.0;
 let actions = agent.cognitive_cycle(&sensors, reward);
 ```
 
-## Examples
+---
 
-### Neural Networks
-```rust
-use hyper_cognitive_kernel::neural::{NeuralNetwork, ActivationFunction};
+## Technical Stack
 
-let mut net = NeuralNetwork::new(4, 2);
-net.add_dense(64, ActivationFunction::ReLU);
-net.add_lstm(32);
-net.add_attention(4);
-
-let loss = net.online_train(&input, &target);
-```
-
-### Continual Learning
-```rust
-use hyper_cognitive_kernel::continual::ContinualLearner;
-
-let mut learner = ContinualLearner::with_ewc(5000.0);
-learner.add_replay_sample(input, target, task_id);
-```
-
-### Natural Language
-```rust
-use hyper_cognitive_kernel::nlp::{Tokenizer, SentimentAnalyzer};
-
-let mut tokenizer = Tokenizer::new(10000);
-let ids = tokenizer.encode("Hello world", 20);
-
-let mut analyzer = SentimentAnalyzer::new();
-let result = analyzer.analyze("Great product!");
-```
-
-### Vision Processing
-```rust
-use hyper_cognitive_kernel::vision::{Image, FeatureExtractor};
-
-let image = Image::from_raw(data, 224, 224, 3);
-let features = extractor.extract_features(&image);
-```
-
-### Environment Interface
-```rust
-use hyper_cognitive_kernel::environment::{MQTTClient, MQTTConfig};
-
-let config = MQTTConfig::default();
-let client = MQTTClient::new(config);
-```
-
-## Installation
-
-Add to `Cargo.toml`:
-
-```toml
-[dependencies]
-hyper_cognitive_kernel = "1.0"
-```
-
-## Building
-
-```bash
-cargo build --release
-cargo test
-```
-
-## Architecture
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    HYPER-COGNITIVE KERNEL                    │
-├─────────────────────────────────────────────────────────────┤
-│  ADVANCED MODULES                                            │
-│  ├── Neural Networks (LSTM, Attention, Reservoir)             │
-│  ├── Continual Learning (EWC, Memory Replay, PackNet)        │
-│  ├── Distributed Learning (Federated, Gossip)                 │
-│  ├── Vision Processing (CNN, Optical Flow)                    │
-│  ├── NLP (Embeddings, Sentiment, Intent)                    │
-│  └── RL + Active Inference                                   │
-├─────────────────────────────────────────────────────────────┤
-│  REAL-TIME LEARNING ENGINE                                   │
-│  ├── Online Gradient Descent                                  │
-│  ├── Adaptive Learning Rate                                   │
-│  └── Elastic Weight Consolidation                             │
-├─────────────────────────────────────────────────────────────┤
-│  CORE COGNITIVE SYSTEMS                                      │
-│  ├── Predictive Coding Network                                │
-│  ├── World Model                                            │
-│  ├── Triple-Layer Memory                                    │
-│  ├── Meta-Learning                                          │
-│  └── Homeostatic Drives                                     │
-└─────────────────────────────────────────────────────────────┘
-```
-
-## Technical Details
-
-- **Language**: Rust 2021 Edition
+- **Language**: Rust Edition
 - **Dependencies**: serde, parking_lot, rayon, tokio, reqwest
-- **Serialization**: Full JSON support via serde
-- **Async**: Tokio for async operations
-- **Parallelism**: Rayon for data parallelism
+- **Serialization**: JSON via serde
+- **Async**: Tokio runtime
+- **Parallelism**: Rayon data parallelism
 
-## Performance
-
-- Low-latency inference optimized
-- Memory-efficient streaming operations
-- No batch processing overhead
-- Parallel processing via Rayon
-
-## Testing
-
-```bash
-cargo test --lib
-```
-
-## Contributing
-
-1. Follow Rust idioms and style
-2. Ensure tests pass
-3. Minimize compiler warnings
+---
 
 ## License
 
 MIT License - see LICENSE file
-
-## References
-
-Based on principles from:
-- Active Inference (Karl Friston)
-- Hierarchical Predictive Processing
-- Continual Learning (EWC, PackNet)
-- Deep Reinforcement Learning
